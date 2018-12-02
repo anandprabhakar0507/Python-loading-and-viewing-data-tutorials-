@@ -1,0 +1,568 @@
+
+
+
+.. raw:: html
+
+   <h1 align="center">
+
+Introduction to Pandas Python
+
+.. raw:: html
+
+   </h1>
+
+Table of Contents
+=================
+
+.. raw:: html
+
+   <div class="alert alert-block alert-info" style="margin-top: 20px">
+
+.. raw:: html
+
+   <li>
+
+About the Dataset
+
+.. raw:: html
+
+   </li>
+
+.. raw:: html
+
+   <li>
+
+Importing Data
+
+.. raw:: html
+
+   </p>
+
+.. raw:: html
+
+   </li>
+
+.. raw:: html
+
+   <li>
+
+Viewing Data and Accessing Data
+
+.. raw:: html
+
+   </p>
+
+.. raw:: html
+
+   </li>
+
+.. raw:: html
+
+   <p>
+
+.. raw:: html
+
+   </p>
+
+Estimated Time Needed: 15 min
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <hr>
+
+.. raw:: html
+
+   <h2 align="center">
+
+About the Dataset
+
+.. raw:: html
+
+   </h2>
+
+The table has one row for each album and several columns
+
+-  **artist** - Name of the artist
+-  **album** - Name of the album
+-  **released\_year** - Year the album was released
+-  **length\_min\_sec** - Length of the album (hours,minutes,seconds)
+-  **genre** - Genre of the album
+-  **music\_recording\_sales\_millions** - Music recording sales
+   (millions in USD) on
+   `SONG://DATABASE <http://www.song-database.com/>`__
+-  **claimed\_sales\_millions** - Album's claimed sales (millions in
+   USD) on `SONG://DATABASE <http://www.song-database.com/>`__
+-  **date\_released** - Date on which the album was released
+-  **soundtrack** - Indicates if the album is the movie soundtrack (Y)
+   or (N)
+-  **rating\_of\_friends** - Indicates the rating from your friends from
+   1 to 10
+
+You can see the dataset here:
+
+.. raw:: html
+
+   <table font-size:xx-small style="width:25%">
+
+.. raw:: html
+
+   <tr>
+
+::
+
+    <th>Artist</th>
+    <th>Album</th> 
+    <th>Released</th>
+    <th>Length</th>
+    <th>Genre</th> 
+    <th>Music recording sales (millions)</th>
+    <th>Claimed sales (millions)</th>
+    <th>Released</th>
+    <th>Soundtrack</th>
+    <th>Rating (friends)</th>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+::
+
+    <td>Michael Jackson</td>
+    <td>Thriller</td> 
+    <td>1982</td>
+    <td>00:42:19</td>
+    <td>Pop, rock, R&B</td>
+    <td>46</td>
+    <td>65</td>
+    <td>30-Nov-82</td>
+    <td></td>
+    <td>10.0</td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   <tr>
+
+::
+
+    <td>AC/DC</td>
+    <td>Back in Black</td> 
+    <td>1980</td>
+    <td>00:42:11</td>
+    <td>Hard rock</td>
+    <td>26.1</td>
+    <td>50</td>
+    <td>25-Jul-80</td>
+    <td></td>
+    <td>8.5</td>
+
+.. raw:: html
+
+   </tr>
+
+::
+
+    <tr>
+    <td>Pink Floyd</td>
+    <td>The Dark Side of the Moon</td> 
+    <td>1973</td>
+    <td>00:42:49</td>
+    <td>Progressive rock</td>
+    <td>24.2</td>
+    <td>45</td>
+    <td>01-Mar-73</td>
+    <td></td>
+    <td>9.5</td>
+
+.. raw:: html
+
+   </tr>
+
+::
+
+    <tr>
+    <td>Whitney Houston</td>
+    <td>The Bodyguard</td> 
+    <td>1992</td>
+    <td>00:57:44</td>
+    <td>Soundtrack/R&B, soul, pop</td>
+    <td>26.1</td>
+    <td>50</td>
+    <td>25-Jul-80</td>
+    <td>Y</td>
+    <td>7.0</td>
+
+.. raw:: html
+
+   </tr>
+
+::
+
+    <tr>
+    <td>Meat Loaf</td>
+    <td>Bat Out of Hell</td> 
+    <td>1977</td>
+    <td>00:46:33</td>
+    <td>Hard rock, progressive rock</td>
+    <td>20.6</td>
+    <td>43</td>
+    <td>21-Oct-77</td>
+    <td></td>
+    <td>7.0</td>
+
+.. raw:: html
+
+   </tr>
+
+::
+
+    <tr>
+    <td>Eagles</td>
+    <td>Their Greatest Hits (1971-1975)</td> 
+    <td>1976</td>
+    <td>00:43:08</td>
+    <td>Rock, soft rock, folk rock</td>
+    <td>32.2</td>
+    <td>42</td>
+    <td>17-Feb-76</td>
+    <td></td>
+    <td>9.5</td>
+
+.. raw:: html
+
+   </tr>
+
+::
+
+    <tr>
+    <td>Bee Gees</td>
+    <td>Saturday Night Fever</td> 
+    <td>1977</td>
+    <td>1:15:54</td>
+    <td>Disco</td>
+    <td>20.6</td>
+    <td>40</td>
+    <td>15-Nov-77</td>
+    <td>Y</td>
+    <td>9.0</td>
+
+.. raw:: html
+
+   </tr>
+
+::
+
+    <tr>
+    <td>Fleetwood Mac</td>
+    <td>Rumours</td> 
+    <td>1977</td>
+    <td>00:40:01</td>
+    <td>Soft rock</td>
+    <td>27.9</td>
+    <td>40</td>
+    <td>04-Feb-77</td>
+    <td></td>
+    <td>9.5</td>
+
+.. raw:: html
+
+   </tr>
+
+.. raw:: html
+
+   </table>
+
+.. raw:: html
+
+   <h2 align="center">
+
+Importing Data
+
+.. raw:: html
+
+   </h2>
+
+We can import the libraries or dependency like Pandas using the
+following command:
+
+.. code:: python
+
+    import pandas as pd
+
+
+After the import command, we now have access to a large number of
+pre-built classes and functions. This assumes the library is installed;
+in our lab environment all the necessary libraries are installed. One
+way pandas allows you to work with data is a dataframe. Let's go through
+the process to go from a comma separated values (**.csv** ) file to a
+dataframe. This variable **csv\_path** stores the path of the **.csv**
+,that is used as an argument to the **read\_csv** function. The result
+is stored in the object \*\* df\*\*, this is a common short form used
+for a variable referring to a Pandas dataframe.
+
+.. code:: python
+
+    csv_path='https://s3-api.us-geo.objectstorage.softlayer.net/cf-courses-data/CognitiveClass/PY0101EN/labs/top_selling_albums.csv'
+    df = pd.read_csv(csv_path)
+
+.. raw:: html
+
+   <div class="alert alert-block alert-info" style="margin-top: 20px">
+
+We can use the method **head()** to examine the first five rows of a
+dataframe:
+
+.. code:: python
+
+    df.head()
+
+The process for loading an excel file is similar, we use the path of the
+excel file and the function **read\_excel**. The result is a data frame
+as before:
+
+.. code:: python
+
+    #dependency  needed to install file 
+    !pip install xlrd
+
+.. code:: python
+
+    xlsx_path='https://ibm.box.com/shared/static/mzd4exo31la6m7neva2w45dstxfg5s86.xlsx'
+    
+    df = pd.read_excel(xlsx_path)
+    df.head()
+
+We can access the column "Length" and assign it a new dataframe 'x':
+
+.. code:: python
+
+    x=df[['Length']]
+    x
+
+The process is shown in the figure:
+
+
+
+.. raw:: html
+
+   <h2 align="center">
+
+Viewing Data and Accessing Data
+
+.. raw:: html
+
+   </h2>
+
+You can also assign the value to a series, you can think of a Pandas
+series as a 1-D dataframe. Just use one bracket:
+
+.. code:: python
+
+    x=df['Length']
+    x
+
+You can also assign different columns, for example, we can assign the
+column 'Artist':
+
+.. code:: python
+
+    x=df[['Artist']]
+    x
+
+Assign the variable 'q' to the dataframe that is made up of the column 'Rating':
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. raw:: html
+
+   <div align="right">
+
+Click here for the solution
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="q1" class="collapse">
+
+::
+
+    q=df[['Rating']]
+    q
+
+.. raw:: html
+
+   </div>
+
+You can do the same thing for multiple columns; we just put the
+dataframe name, in this case, **df**, and the name of the multiple
+column headers enclosed in double brackets. The result is a new
+dataframe comprised of the specified columns:
+
+.. code:: python
+
+    y=df[['Artist','Length','Genre']]
+    y
+
+The process is shown in the figure:
+
+
+
+.. code:: python
+
+    df[['Album','Released','Length']]
+
+Assign the variable 'q' to the dataframe that is made up of the column 'Released' and 'Artist':
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+   <div align="right">
+
+Click here for the solution
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="q2" class="collapse">
+
+::
+
+    q=df[['Released','Artist']]
+    q
+
+.. raw:: html
+
+   </div>
+
+One way to access unique elements is the 'ix' method, where you can
+access the 1st row and first column as follows :
+
+.. code:: python
+
+    #**ix** will be deprecated, use **iloc** for integer indexes 
+    #df.ix[0,0]
+    df.iloc[0,0]
+
+You can access the 2nd row and first column as follows:
+
+.. code:: python
+
+    #**ix** will be deprecated, use **iloc** for integer indexes
+    #df.ix[1,0]
+    df.iloc[1,0]
+
+You can access the 1st row 3rd column as follows:
+
+.. code:: python
+
+    #**ix** will be deprecated, use **iloc** for integer indexes
+    #df.ix[0,2]
+    df.iloc[0,2]
+
+Access the 2nd row 3rd column:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. raw:: html
+
+   <div align="right">
+
+Click here for the solution
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="q3" class="collapse">
+
+::
+
+    df.ix[1,2]
+        
+    or df.iloc[0,2]
+
+.. raw:: html
+
+   </div>
+
+You can access the column using the name as well, the following are the
+same as above:
+
+.. code:: python
+
+    #**ix** will be deprecated, use **loc** for label-location based indexer
+    #df.ix[0,'Artist']
+    df.loc[0,'Artist']
+
+.. code:: python
+
+    #**ix** will be deprecated, use **loc** for label-location based indexer
+    #df.ix[1,'Artist']
+    df.loc[1,'Artist']
+
+.. code:: python
+
+    #**ix** will be deprecated, use **loc** for label-location based indexer
+    #df.ix[0,'Released']
+    df.loc[0,'Released']
+
+.. code:: python
+
+    #**ix** will be deprecated, use **loc** for label-location based indexer
+    #df.ix[1,'Released']
+    df.loc[1,'Released']
+
+.. code:: python
+
+    df.ix[1,2]
+
+You can perform slicing using both the index and the name of the column:
+
+.. code:: python
+
+    #**ix** will be deprecated, use **loc** for label-location based indexer
+    #df.ix[0:2, 0:3]
+    df.iloc[0:2, 0:3]
+    
+
+
+.. code:: python
+
+    #**ix** will be deprecated, use **loc** for label-location based indexer
+    #df.ix[0:2, 'Artist':'Released']
+    df.loc[0:2, 'Artist':'Released']
+
+
+
+About the Authors:
+~~~~~~~~~~~~~~~~~~
+
+`Joseph
+Santarcangelo <https://www.linkedin.com/in/joseph-s-50398b136/>`__ has a
+PhD in Electrical Engineering, his research focused on using machine
+learning, signal processing, and computer vision to determine how videos
+impact human cognition. Joseph has been working for IBM since he
+completed his PhD.
+
+Copyright © 2017 `cognitiveclass.ai <https:cognitiveclass.ai>`__. This
+notebook and its source code are released under the terms of the `MIT
+License <cognitiveclass.ai>`__.
